@@ -1,0 +1,24 @@
+{
+    "name": "samfileverifier",
+    "displayName": "samFileVerifier",
+    "description": "sam file verifier extension",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.49.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "jsonc",
+            "aliases": ["sam script", "jsonc"],
+            "extensions": ["sidimatamfjson"],
+        }],
+        "grammars": [{
+            "language": "jsonc",
+            "scopeName": "source.sidimatamfjson",
+            "path": "./syntaxes/jsonc.tmLanguage.json"
+        }]
+    }
+}
