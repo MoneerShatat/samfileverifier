@@ -1,0 +1,30 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "sam script",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#sam-config"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.sidimatamfjson",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		
+		"sam-config": {
+			"name": "string.quoted.double.sidimatamfjson",
+			"patterns": [
+				{
+					"name": "keyword.control.sidimatamfjson",
+					"match": "\\b(measure||move-up|return)\\b"				}
+			]
+		}
+	},
+	"scopeName": "source.sidimatamfjson"
+}

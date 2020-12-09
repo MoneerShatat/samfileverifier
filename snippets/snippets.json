@@ -1,0 +1,234 @@
+{
+
+    "PlotProperty operation": {
+        "prefix": "excit-filter",
+        "body": [ "\"excit-filter; filnum:1; type:$NOFIL; par1:0.1; par2:1.0; par3:1.0;\"," ],
+        "description": "create a plot property operation"        
+    },
+    "Signals operation": {
+        "prefix": "signals",
+        "body": [ "<Operation Name=\"SignalOperation\">\n\t<Value>\n\t\t<anyType xsi:type=\"xsd:string\">${1:remove-points;last:2; sig1:F1S1; sig2:F1S2; sig3:F1S3; sig4:F1S4; sig5:F1S5}</anyType>\n\t</Value>\n</Operation>" ],
+        "description": "create a signals operation"        
+    },
+    "Annotation operation": {
+        "prefix": "annotation",
+        "body": [ "<Operation Name=\"Annotation\">\n\t<Value>\n\t\t<anyType xsi:type=\"xsd:string\">add; type:point;xpos1:3;xpos2:7</anyType>\n\t</Value>\n</Operation>" ],
+        "description": "create annotation operation"        
+    },
+    "FigureProperty opearation": {
+        "prefix": "figure",
+        "body": [ "<Operation Name=\"FigureProperty\">\n\t<Value>\n\t\t<anyType xsi:type=\"xsd:string\">figure; ${1:title:Test file;} ${2:title-color:#fff0f0f0;} ${3:title-fontsize:18;} ${4:title-fontweight:bold;} ${5:title-background:#ef202020;} ${6:width:900;} ${7:height:900}</anyType>\n\t</Value>\n</Operation>" ],
+        "description": "create a figure property operation"        
+    },
+    "Save operation": {
+        "prefix": "save",
+        "body": [ "<Operation Name=\"Save\">\n\t<Value>\n\t\t<anyType xsi:type=\"xsd:string\">loggfig2pic; fignum: ${1:1}; file: ${2:D:\\temp\\Samba19x Data\\Figure600.png;}  ${3:width:400;} ${4:height: 600;}</anyType>\n\t</Value>\n</Operation>" ],
+        "description": "create a save operation"        
+    },
+    "Restyle operation": {
+        "prefix": "restyle",
+        "body": [ "<Operation Name=\"Restyle\">\n\t<Value>\n\t\t<anyType xsi:type=\"xsd:string\">loggfig; fignum: ${1:1}; file: ${2:D:\\temp\\Samba19x Data\\PlotStyle.loggmanxml}</anyType>\n\t</Value>\n</Operation>" ],
+        "description": "create a restyle operation"        
+    },
+    "signals->avg": {
+        "prefix": "avg",
+        "body": [ "<anyType xsi:type=\"xsd:string\">avg; sig:${1:F1S1}; param:${2:$SigAvg1};${3:mult:${4:1.0}}</anyType>" ],
+        "description": "calculates the average value of a curve data, optionally multiply it with mult and save the result to param"
+    },
+    "signals->pkpk": {
+        "prefix": "pkpk",
+        "body": [ "<anyType xsi:type=\"xsd:string\">pkpk; sig:${1:F1S1}; param:${2:$SigPkPk1};${3:mult:${4:1.0}}</anyType>" ],
+        "description": "calculates the pkpk (peak to peak) value of a curve data, optionally multiply it with mult and save the result to param"
+    },
+    "signals->max": {
+        "prefix": "max",
+        "body": [ "<anyType xsi:type=\"xsd:string\">max; sig:${1:F1S1}; param:${2:$SigMax2};${3:mult:${4:1.0}}</anyType>" ],
+        "description": "calculates the maximum value of a curve data, optionally multiply it with mult and save the result to param"
+    },
+    "signals->min": {
+        "prefix": "min",
+        "body": [ "<anyType xsi:type=\"xsd:string\">min; sig:${1:F1S1}; param:${2:$SigMin2};${3:mult:${4:1.0}}</anyType>" ],
+        "description": "calculates the minimum value of a curve data, optionally multiply it with mult and save the result to param"
+    },
+    "signals->std": {
+        "prefix": "signal->std (standard deviation value)",
+        "body": [ "<anyType xsi:type=\"xsd:string\">avg; sig:${1:F1S1}; param:${2:$SigStd2};${3:mult:${4:1.0}}</anyType>" ],
+        "description": "calculates the standard deviation value of a curve data, optionally multiply it with mult and save the result to param"
+    },
+    "signals->average": {
+        "prefix": "average",
+        "body": [ "<anyType xsi:type=\"xsd:string\">average; sig:${1:F1S1}; length:${2:3}; ${3:newsig:F1S1Avg;} ${4:title:Averaged Signal;}</anyType>" ],
+        "description": "average the signal by the given length, optionally save the averaged signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->rms": {
+        "prefix": "rms",
+        "body": [ "<anyType xsi:type=\"xsd:string\">rms; sig:${1:F1S1}; length:${2:3}; ${3:newsig:F1S1RMS;} ${4:title:RMS Signal;}</anyType>" ],
+        "description": "build the rms(root mean square) of signal by the given length, optionally save the rms signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->median": {
+        "prefix": "median",
+        "body": [ "<anyType xsi:type=\"xsd:string\">median; sig:${1:F1S1}; length:${2:3}; ${3:newsig:F1S1Med;} ${4:title:Median filtered signal;}</anyType>" ],
+        "description": "median filter the signal by the given length, optionally save the median filtered signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->filter": {
+        "prefix": "filter",
+        "body": [ "<anyType xsi:type=\"xsd:string\">median; sig:${1:F1S1}; ftype:${2:1}; par1:${3:10}; par2:${4:10};par3:${5:10};par4:${6:10};par5:${7:10};${8:newsig:F1S1Med;} ${9:title:filtered signal;}</anyType>" ],
+        "description": "filter the signal the given filter (ide-filter), optionally save the filtered signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->remove-points": {
+        "prefix": "removepoints",
+        "body": [ "<anyType xsi:type=\"xsd:string\">remove-points;${1:last:${2:2};} sig1:${3:F1S1}; ${4:sig2:F1S2;} ${5:sig3:F1S3;} ${6:sig4:F1S4;} ${7:sig5:F1S5}</anyType>" ],
+        "description": "remove points from listed signals"
+    },
+    "signals->xysig": {
+        "prefix": "xysig",
+        "body": [ "<anyType xsi:type=\"xsd:string\">xysig; xsig:${2:F1S2}; ysig:${1:F1S1}; newsig:${3:F1S2M}; ${4:title:${5:titleofnewsig};}</anyType>" ],
+        "description": "build a new signal (xsig-y,yisg-y) and save the resulted signal to newsig"
+    },
+    "signals->add": {
+        "prefix": "add",
+        "body": [ "<anyType xsi:type=\"xsd:string\">add; sig:${1:F1S1}; factor:${2:3}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "add the factor value to sig, optionally save the resulted signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->subt": {
+        "prefix": "subt",
+        "body": [ "<anyType xsi:type=\"xsd:string\">subt; sig:${1:F1S1}; factor:${2:3}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "subtract the factor value from sig, optionally save the resulted signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->mult": {
+        "prefix": "mult",
+        "body": [ "<anyType xsi:type=\"xsd:string\">mult; sig:${1:F1S1}; factor:${2:3}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "multiply the factor value with sig, optionally save the resulted signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->divide": {
+        "prefix": "divide",
+        "body": [ "<anyType xsi:type=\"xsd:string\">divide; sig:${1:F1S1}; factor:${2:3}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "dicide sig through factor value, optionally save the resulted signal to newsig otherwise sig will be overwritten"
+    },
+    "signals->add2sig": {
+        "prefix": "add2sig",
+        "body": [ "<anyType xsi:type=\"xsd:string\">add-2sig; sig1:${1:F1S1}; sig2:${2:F1S2}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "add sig1 and sig2, optionally save the resulted signal to newsig otherwise sig1 will be overwritten"
+    },
+    "signals->subt2sig": {
+        "prefix": "subt2sig",
+        "body": [ "<anyType xsi:type=\"xsd:string\">subt-2sig; sig1:${1:F1S1}; sig2:${2:F1S2}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "subtract sig2 from sig1, optionally save the resulted signal to newsig otherwise sig1 will be overwritten"
+    },
+    "signals->mult2sig": {
+        "prefix": "add2sig",
+        "body": [ "<anyType xsi:type=\"xsd:string\">mult-2sig; sig1:${1:F1S1}; sig2:${2:F1S2}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "multiply sig1 with sig2, optionally save the resulted signal to newsig otherwise sig1 will be overwritten"
+    },
+    "signals->divide2sig": {
+        "prefix": "divide2sig",
+        "body": [ "<anyType xsi:type=\"xsd:string\">divide-2sig; sig1:${1:F1S1}; sig2:${2:F1S2}; ${3:newsig:F1S1RMS;} ${4:title:ResultSig;}</anyType>" ],
+        "description": "divide sig1 through sig2, optionally save the resulted signal to newsig otherwise sig1 will be overwritten"
+    },
+    "plot->plot": {
+        "prefix": "plot",
+        "body": [ "<anyType xsi:type=\"xsd:string\">plot; ${1:grid:on;}${2:title:Polynom output;} ${3:title-color:#fff0f0f0;} ${4:title-fontsize:14;} ${5:border-color:#ff505050;} ${6:background:#ef202020;} ${1:legend-text-color:#fff0f0f0}</anyType>" ],
+        "description": "PlotProperty plot cmd"
+    },
+    "plotproperty->xaxis": {
+        "prefix": "xaxis",
+        "body": [ "<anyType xsi:type=\"xsd:string\">xaxis; label:${1:Time[Sec.]}; label-color:${2:#ff101010)</anyType>" ],
+        "description": "PlotProperty xaxis cmd"
+    },
+    "plot->yaxis": {
+        "prefix": "yaxis",
+        "body": [ "<anyType xsi:type=\"xsd:string\">yaxis; label:${1:Signal}; label-color:${2:#ff101010}</anyType>" ],
+        "description": "PlotProperty yaxis cmd"
+    },
+    "plot->curvecolor": {
+        "prefix": "curvecolor",
+        "body": [ "<anyType xsi:type=\"xsd:string\">curves-line-color; curve#1:${1:#ff0000ff}; curve#2:${2:#ff00ff00)</anyType>" ],
+        "description": "PlotProperty curve-color cmd"
+    },
+    "plot->curvelinestyle": {
+        "prefix": "linestyle",
+        "body": [ "<anyType xsi:type=\"xsd:string\">curves-line-style; curve#1:${1:dash}; curve#2:${2:dashdot)</anyType>" ],
+        "description": "PlotProperty curves-line-style cmd"
+    },
+    "plot->curveremove": {
+        "prefix": "curveremove",
+        "body": [ "<anyType xsi:type=\"xsd:string\">curves-remove; curve#1:${1:1}; curve#2:${2:2)</anyType>" ],
+        "description": "remove the listed curves from plot"
+    },
+    "plot->curve-line-thickness": {
+        "prefix": "curvethickness",
+        "body": [ "<anyType xsi:type=\"xsd:string\">curves-line-thickness; curve#1:${1:1}; curve#2:${2:1)</anyType>" ],
+        "description": "PlotProperty curve-line-thickness cmd"
+    },
+    "plot->curves": {
+        "prefix": "curves",
+        "body": [ "<anyType xsi:type=\"xsd:string\">curves; curve#1:${1:F1S1}; curve#2:${2:F1S2};</anyType>" ],
+        "description": "add listed curves to plot"
+    },
+    "linestyle#1": {
+        "prefix": "dash",
+        "body": [ "dash;" ],
+        "description": "line style"
+    },
+    "linestyle#2": {
+        "prefix": "dashdashdot",
+        "body": [ "dashdashdot;" ],
+        "description": "line style"
+    },
+    "linestyle#3": {
+        "prefix": "dashdashdotdot",
+        "body": [ "dashdashdotdot;" ],
+        "description": "line style"
+    },
+    "linestyle#4": {
+        "prefix": "dashdot",
+        "body": [ "dashdot;" ],
+        "description": "line style"
+    },
+    "linestyle#5": {
+        "prefix": "dashdotdot",
+        "body": [ "dashdotdot;" ],
+        "description": "line style"
+    },
+    "linestyle#6": {
+        "prefix": "dot",
+        "body": [ "dot;" ],
+        "description": "dashed line style"
+    },
+    "linestyle#7": {
+        "prefix": "longdash",
+        "body": [ "longdash;" ],
+        "description": "dashed line style"
+    },
+    "linestyle#8": {
+        "prefix": "longdashdot",
+        "body": [ "longdashdot;" ],
+        "description": "dashed line style"
+    },
+    "linestyle#9": {
+        "prefix": "longdashdotdot",
+        "body": [ "longdashdotdot;" ],
+        "description": "dashed line style"
+    },
+    "color#1": {
+        "prefix": "red",
+        "body": [ "#ffff0000;" ],
+        "description": "ARGB red color"
+    },
+    "color#2": {
+        "prefix": "green",
+        "body": [ "#ff00ff00;" ],
+        "description": "ARGB green color"
+    },
+    "color#3": {
+        "prefix": "blue",
+        "body": [ "#ff0000ff;" ],
+        "description": "ARGB blue color"
+    },
+    "DummyFile": {
+        "prefix": "dummyfile",
+        "body": [ "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<SignalAndFigureConfiguration xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" FileVersion=\"1\">\n<OpenMultiDataFile>false</OpenMultiDataFile>\n<DataFilesNumber>1</DataFilesNumber>\n<Signals IsActive=\"true\">\n\t<SignalActions>\n\t<!-- Here you could add Signal operation using the signaloperation snippets !-->\n\t</SignalActions>\n</Signals>\n<Figures>\n\t<!-- Here you could add additional figures using the figure snippet !-->\n\t<Figure IsActive=\"true\" Title=\"Coil Temperature Measuerements\" RowNumber=\"1\" ColumnNumber=\"1\">\n\t\t<Subplots>\n<!-- Here you could add additional figures using the subplot snippet !-->\n\t\t\t<Subplot Row=\"1\" Column=\"1\">\n\t\t\t\t<SubPlotActions>\n\t\t\t\t<!-- Here you could add additional operations using the annotation or plot property snippet !-->\n\t\t\t\t</SubPlotActions>\n\t\t\t</Subplot>\n\t\t</Subplots>\n\t<FigureActions>\n\t\t<!-- Here you could add operation which is valid for all subplots of the figure\nuse the figure property, annotation and plot property snippets !-->\n\t\t</FigureActions>\n\t</Figure>\n</Figures>\n<PostOperations>\n<!-- Here you could add save, directory, restyle operations\nthe post operation are intended to modify the appearance of the figure and \n     to save figures, plots to picture or to idefigure file\n    which is valid for all subplots of the figure \n     use the save restyle and directory snippets !-->\n</PostOperations>\n</SignalAndFigureConfiguration>" ],
+        "description": "creat a sample loggmanxml file"
+    }
+    
+}

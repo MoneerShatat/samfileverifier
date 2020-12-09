@@ -1,0 +1,279 @@
+{
+	"information_for_contributors": [
+		"This file has been converted from https://github.com/microsoft/vscode-JSON.tmLanguage/blob/master/JSON.tmLanguage",
+		"If you want to provide a fix or improvement, please create a pull request against the original repository.",
+		"Once accepted there, we are happy to receive an update request."
+	],
+	"version": "https://github.com/microsoft/vscode-JSON.tmLanguage/commit/9bd83f1c252b375e957203f21793316203f61f70",
+	"name": "JSON with comments",
+	"scopeName": "source.sidimatamfjson",
+	"patterns": [
+		{
+			"include": "#value"
+		}
+	],
+	"repository": {
+			
+		
+		"array": {
+			"begin": "\\[",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.begin.sidimatamfjson"
+				}
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.end.sidimatamfjson"
+				}
+			},
+			"name": "meta.structure.array.sidimatamfjson",
+			"patterns": [
+				{
+					"include": "#sam-cmds"
+                },{
+                    "include": "#value"                   
+				},
+				{
+					"match": ",",
+					"name": "punctuation.separator.array.sidimatamfjson"
+				},
+				{
+					"match": "[^\\s\\]]",
+					"name": "invalid.illegal.expected-array-separator.sidimatamfjson"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "/\\*\\*(?!/)",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.sidimatamfjson"
+						}
+					},
+					"end": "\\*/",
+					"name": "comment.block.documentation.sidimatamfjson"
+				},
+				{
+					"begin": "/\\*",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.sidimatamfjson"
+						}
+					},
+					"end": "\\*/",
+					"name": "comment.block.sidimatamfjson"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.sidimatamfjson"
+						}
+					},
+					"match": "(//).*$\\n?",
+					"name": "comment.line.double-slash.js"
+				}
+			]
+		},
+		"constant": {
+			"match": "\\b(?:true|false|null)\\b",
+			"name": "constant.language.sidimatamfjson"
+		},
+		"number": {
+			"match": "(?x)        # turn on extended mode\n  -?        # an optional minus\n  (?:\n    0       # a zero\n    |       # ...or...\n    [1-9]   # a 1-9 character\n    \\d*     # followed by zero or more digits\n  )\n  (?:\n    (?:\n      \\.    # a period\n      \\d+   # followed by one or more digits\n    )?\n    (?:\n      [eE]  # an e character\n      [+-]? # followed by an option +/-\n      \\d+   # followed by one or more digits\n    )?      # make exponent optional\n  )?        # make decimal portion optional",
+			"name": "constant.numeric.sidimatamfjson"
+		},
+		"object": {
+			"begin": "\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.begin.sidimatamfjson"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.end.sidimatamfjson"
+				}
+			},
+			"name": "meta.structure.dictionary.sidimatamfjson",
+			"patterns": [
+				{
+					"comment": "the JSON object key",
+					"include": "#objectkey"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"begin": ":",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.dictionary.key-value.sidimatamfjson"
+						}
+					},
+					"end": "(,)|(?=\\})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.dictionary.pair.sidimatamfjson"
+						}
+					},
+					"name": "meta.structure.dictionary.value.sidimatamfjson",
+					"patterns": [
+						{
+							"comment": "the JSON object value",
+							"include": "#value"
+						},
+						{
+							"match": "[^\\s,]",
+							"name": "invalid.illegal.expected-dictionary-separator.sidimatamfjson"
+						}
+					]
+				},
+				{
+					"match": "[^\\s\\}]",
+					"name": "invalid.illegal.expected-dictionary-separator.sidimatamfjson"
+				}
+			]
+		},
+		"string": {
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.sidimatamfjson"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.sidimatamfjson"
+				}
+			},
+			"name": "string.quoted.double.sidimatamfjson",
+			"patterns": [
+				{
+					"include": "#stringcontent"
+				}
+			]
+		},
+		"objectkey": {
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.support.type.property-name.begin.sidimatamfjson"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.support.type.property-name.end.sidimatamfjson"
+				}
+			},
+			"name": "string.sidimatamfjson support.type.property-name.sidimatamfjson",
+			"patterns": [
+				{
+					"include": "#stringcontent"
+				}
+			]
+		},
+		"stringcontent": {
+			"patterns": [
+				{
+					"match": "(?x)                # turn on extended mode\n  \\\\                # a literal backslash\n  (?:               # ...followed by...\n    [\"\\\\/bfnrt]     # one of these characters\n    |               # ...or...\n    u               # a u\n    [0-9a-fA-F]{4}) # and four hex digits",
+					"name": "constant.character.escape.sidimatamfjson"
+				},
+				{
+					"match": "\\\\.",
+					"name": "invalid.illegal.unrecognized-string-escape.sidimatamfjson"
+                },
+                {
+					"include": "#sam-cmds"
+                }
+			]
+		},
+		"sam-ops":{
+			"patterns":[
+				{
+					"name": "keyword.sidimatamfjson",
+					"match": "\\b(Samcommands|CheckSpec|Report|)\\b"
+				}
+				]
+		},
+		"sam-cmds":{
+			"patterns": [				
+				{	"include":"#SamCommands-cmds"           },
+                {	"include":"#Report-cmds"				},
+                {	"include":"#DirectivesPattern"			},
+                {	"include":"#CheckSpecResultPattern"			},
+				{	"include":"#CheckSpec-cmds"				}		
+			]
+		},
+		"SamCommands-cmds":{
+			"patterns":[
+				{
+					"name": "keyword.sidimatamfjson",
+					"match": "\\b(add-from-csv;|excit-sig|cache-measurement|restyle-measurement|system-loopstatus|excit-filter|trace-sig|trace-setting|clear-cached-measurements|directory|individual-loopstatus|clear-cached-measurements|logg-par|close-loggfig|measure|monitor-sig|waitms|start-logging|stop-logging|excit-setting|save|wait-for-event-trace|get-logg-data)\\b"
+                },
+                {"include":"samcmd#1"}
+				]
+        },
+        "samcmd#1":{"name": "support.type.sidimatamfjson", "begin": "\"individual-loopstatus;", "end": "\",",	"patterns": [{"name": "keyword.control.sidimatamfjson", "match": "velocity:|position:" }]},		
+        "CurvesPattern":{"patterns": [{"name": "keyword.control.sidimatamfjson", "match": "curve#?\\d?\\d?:[^[;\\s?\\s?curve:]?]+;"	}]},
+        "SpecRangePattern":{"patterns": [{ "name": "markup.heading.sidimatamfjson", "match": "\\b(sig:|specmin:|specmax:|rmin:|rmax:)\\b" }]},
+        "DirectivesPattern":{"patterns": [{ "name": "support.type.sidimatamfjson", "match": "\\$[^[;\\s?\\s?]?]+;" }]},
+        "CheckSpecResultPattern":{"patterns": [{ "name": "support.function.sidimatamfjson", "match": "CheckSpec_#.+\\.[^[;\\s?\\s?]?]+;" }]},
+
+		"Report-cmds":{
+			"patterns":[
+				{
+					"name": "keyword.sidimatamfjson",
+					"match": "\\b(tablerow\\s?;\\s?|tableheader\\s?;\\s?|text|para1|para2|para3|para4|para5|para6|pic|add-setting-table|add-setting-table#)\\b"
+				}
+			]
+		},
+		"CheckSpec-cmds":{			
+                   
+                    "patterns":[
+                        {
+                            "name": "keyword.sidimatamfjson",
+                            "match": "\\b(std|ocl-lbw|ocl-hbw|ocl-damp|avg)\\b"
+                        },
+                        {
+                            "name": "markup.heading.sidimatamfjson",
+                            "match": "(cache\\s?;\\s?file.*:\\s?)"
+                        }                       
+                        
+                    ]
+                
+			
+        },
+        "checkspeccmd#1":{"name": "support.type.ideloggingPltMan", "begin": "\"individual-loopstatus;", "end": "\",",	"patterns": [{"name": "keyword.control.ideloggingPltMan", "match": "velocity:|position:" }]},		
+
+		"value": {
+			"patterns": [
+                
+				{
+					"include": "#constant"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#array"
+				},
+				{
+					"include": "#object"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		}
+	}
+}
